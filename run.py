@@ -56,30 +56,69 @@ def play_game():
     print('The word contains', len(word), 'letters.')
     print(word)
 
-    while complete is False:
-        for i in word:
-            if i.lower() in guesses:
-                print(i, end="")
+    while complete is False and lives > 0:
+        print('The word contains', len(word), 'letters.')
+        guess = input(f"Lives left:{lives}, Guess a letter or the word: ")
+
+        if guess.isalpha():
+            if len(guess) == 1:
+                if guess in guesses:
+                    print(f"you have already guessed {guess}, try again")
+                elif guess not in word:
+                    print(f"Sorry, {guess} is not in the Secret Word")
+                    guesses.append(guess)
+                    lives -= 1
+                elif guess in word:
+                    print(f"Great job! The letter {guess} exists in the word")
+                    guesses.append(guess)
+                else:
+                    print("Error: Oops, please check your entry")
+            elif len(guess) is len(word):
+                if guess == word:
+                    print(f"Well done! You guessed the correct Word {word}")
+                    complete = True
+                else:
+                    print(f"Sorry, {guess} is not the word!")
+                    lives -= 1
             else:
-                print("_", end="")
-        print("")
+                print("Oops! The amount of letters is not right.")
 
-        guess = input(f"Lives left:{lives}, Guess: ")
-        guesses.append(guess.lower())
-        if guess.lower() not in word:
+        else:
+            print("ValueError: Please enter a letter or guess the word.")
             lives -= 1
-            print(f" Guessed already: {guesses}")
-            if lives == 0:
-                break
 
-    complete = True
-    for i in word:
-        if i.lower() not in guesses:
-            complete = False
+        current = ''
+        if complete is False:
+            for letter in word:
+                if letter in guesses:
+                    current += letter
+                else:
+                    current += '_'
+            print(current)
 
-    if complete:
+        # for i in word:
+        #     if i.lower() in guesses:
+        #         print(i, end="")
+        #     else:
+        #         print("_", end="")
+        # print("")
+
+    #     guesses.append(guess.lower())
+    #     if guess.lower() not in word:
+    #         lives -= 1
+    #         print(f" Guessed already: {guesses}")
+    #         if lives == 0:
+    #             break
+
+    # complete = True
+    # for i in word:
+    #     if i.lower() not in guesses:
+    #         complete = False
+
+    if current is word:
         print(f"Congrads! You got it! You guessed the Secret word {word}")
-    else:
+        complete = True
+    elif lives == 0:
         print(f"Oh no! Game over! The Secret Word was {word}")
 
 
