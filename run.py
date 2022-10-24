@@ -1,6 +1,7 @@
 """
 Import the random choice function and gspreadto access our spreadsheet of words
 """
+import string
 import random
 import gspread
 from google.oauth2.service_account import Credentials
@@ -48,7 +49,17 @@ def play_game():
     will also check how many lives you have and print message if you
     win or lose
     """
-    word = get_word()
+    word = str(get_word())
+    print(word)
+
+    for letter in string.punctuation:
+        word = word.replace(letter, '')
+
+    print(word)
+
+    new_word = list(word)
+    print(new_word)
+
     lives = 6
     guesses = []
     complete = False
