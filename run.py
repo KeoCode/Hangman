@@ -49,47 +49,49 @@ def play_game():
     will also check how many lives you have and print message if you
     win or lose
     """
-    word = str(get_word())
-    print(word)
+    word_string = str(get_word())
 
     for letter in string.punctuation:
-        word = word.replace(letter, '')
+        word_string = word_string.replace(letter, '')
 
-    print(word)
-
-    new_word = list(word)
-    print(new_word)
+    word = list(word_string)
+    # print(word)
 
     lives = 6
     guesses = []
     complete = False
-
-    print('The word contains', len(word), 'letters.')
-    print(word)
+    print(len(word) * '_ ')
 
     while complete is False and lives > 0:
         print('The word contains', len(word), 'letters.')
+        print(guesses)
+        print()
         guess = input(f"Lives left:{lives}, Guess a letter or the word: ")
+        print()
 
         if guess.isalpha():
             if len(guess) == 1:
                 if guess in guesses:
-                    print(f"you have already guessed {guess}, try again")
+                    print(f"you have already guessed {guess.upper()}.")
+                    print()
                 elif guess not in word:
-                    print(f"Sorry, {guess} is not in the Secret Word")
+                    print(f"Sorry, {guess.upper()} is not in the Secret Word")
                     guesses.append(guess)
+                    print()
                     lives -= 1
                 elif guess in word:
-                    print(f"Great job! The letter {guess} exists in the word")
+                    print(f"Great! The letter {guess.upper()} is in the word")
                     guesses.append(guess)
+                    print()
                 else:
                     print("Error: Oops, please check your entry")
+                    print()
             elif len(guess) is len(word):
                 if guess == word:
                     print(f"Well done! You guessed the correct Word {word}")
                     complete = True
                 else:
-                    print(f"Sorry, {guess} is not the word!")
+                    print(f"Sorry, {guess.upper()} is not the word!")
                     lives -= 1
             else:
                 print("Oops! The amount of letters is not right.")
@@ -126,11 +128,15 @@ def play_game():
     #     if i.lower() not in guesses:
     #         complete = False
 
-    if current is word:
-        print(f"Congrads! You got it! You guessed the Secret word {word}")
+    if current is word_string:
+        print("Congradulations! You got it right!")
+        print(f"The word is {word_string.capitalize()}")
+        print()
         complete = True
     elif lives == 0:
-        print(f"Oh no! Game over! The Secret Word was {word}")
+        print("Oh no! Game over!")
+        print(f"The Secret Word was {word_string.capitalize()}")
+        print()
 
 
 def replay():
@@ -138,7 +144,7 @@ def replay():
     once game is finished, ask player if they would like to play again,
     if so restart play game function, if not then print message
     """
-    replay_answer = input("would you like to play again? Enter Y/N").lower()
+    replay_answer = input("would you like to play again? Enter Y/N ").lower()
     if replay_answer == 'y':
         play_game()
     else:
