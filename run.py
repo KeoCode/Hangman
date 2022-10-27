@@ -9,18 +9,18 @@ from google.oauth2.service_account import Credentials
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
     "https://www.googleapis.com/auth/drive.file",
-    "https://www.googleapis.com/auth/drive"
+    "https://www.googleapis.com/auth/drive",
 ]
 
 """
 Assign credentials from our API's and access our words spreadsheet
 """
-CREDS = Credentials.from_service_account_file('creds.json')
+CREDS = Credentials.from_service_account_file("creds.json")
 SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
-SHEET = GSPREAD_CLIENT.open('hangman_words')
+SHEET = GSPREAD_CLIENT.open("hangman_words")
 
-wordlist = SHEET.worksheet('wordsheet')
+wordlist = SHEET.worksheet("wordsheet")
 
 data = wordlist.get_all_values()
 
@@ -52,7 +52,7 @@ def play_game():
     word_string = str(get_word())
 
     for letter in string.punctuation:
-        word_string = word_string.replace(letter, '')
+        word_string = word_string.replace(letter, "")
 
     word = list(word_string)
     # print(word)
@@ -60,11 +60,12 @@ def play_game():
     lives = 6
     guesses = []
     complete = False
-    print(len(word) * '_ ')
+    print(len(word) * "_ ")
 
     while complete is False and lives > 0:
-        print('The word contains', len(word), 'letters.')
-        print(guesses)
+        print("The word contains", len(word), "letters.")
+        print("Already Guessed: ", end=' ')
+        print(*guesses, sep=', ')
         print()
         guess = input(f"Lives left:{lives}, Guess a letter or the word: ")
         print()
@@ -100,13 +101,13 @@ def play_game():
             print("ValueError: Please enter a letter or guess the word.")
             lives -= 1
 
-        current = ''
+        current = ""
         if complete is False:
             for letter in word:
                 if letter in guesses:
                     current += letter
                 else:
-                    current += '_'
+                    current += '_ '
             print(current)
 
         # for i in word:
@@ -116,27 +117,27 @@ def play_game():
         #         print("_", end="")
         # print("")
 
-    #     guesses.append(guess.lower())
-    #     if guess.lower() not in word:
-    #         lives -= 1
-    #         print(f" Guessed already: {guesses}")
-    #         if lives == 0:
-    #             break
+        #     guesses.append(guess.lower())
+        #     if guess.lower() not in word:
+        #         lives -= 1
+        #         print(f" Guessed already: {guesses}")
+        #         if lives == 0:
+        #             break
 
-    # complete = True
-    # for i in word:
-    #     if i.lower() not in guesses:
-    #         complete = False
-
-    if current is word_string:
-        print("Congradulations! You got it right!")
-        print(f"The word is {word_string.capitalize()}")
-        print()
-        complete = True
-    elif lives == 0:
-        print("Oh no! Game over!")
-        print(f"The Secret Word was {word_string.capitalize()}")
-        print()
+        # complete = True
+        # for i in word:
+        #     if i.lower() not in guesses:
+        #         complete = False
+        # pdb.set_trace()
+        if current == word_string:
+            print("Congradulations! You got it right!")
+            print(f"The word is {word_string.capitalize()}")
+            print()
+            complete = True
+        elif lives == 0:
+            print("Oh no! Game over!")
+            print(f"The Secret Word was {word_string.capitalize()}")
+            print()
 
 
 def replay():
@@ -145,7 +146,7 @@ def replay():
     if so restart play game function, if not then print message
     """
     replay_answer = input("would you like to play again? Enter Y/N ").lower()
-    if replay_answer == 'y':
+    if replay_answer == "y":
         play_game()
     else:
         print("Thanks for playing! Hope to see you again soon!")
