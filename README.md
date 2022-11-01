@@ -40,86 +40,61 @@ It the then displays a winner or loser message depending on the outcome.
 
   - This function asks the user at the end of the game if they would like to
 
-![Main Image](/assets/images/imgshot.png)
+![Main Image](/assets/images/)
 
-- __The Form Area__
+### Testing 
 
-  - This section is where the user input their data and submit it so it will run the calculations just before being redirected to the results page.
+- Tested the code in the Code Institute Heroku terminal and also the terminal inside of Gitpod.
+Checked that symbols, numbers or empty spaces will come up as invalid guesses when guessing the word.
 
-![Form Section](/assets/images/formshot.png)
+- No errors showing on gitpod terminal after installing pycodestyle due to PEP8 website being down.
 
-- __The Footer Area__
+- 
 
-  - Basic Footer with a disclaimer to consult a doctor for any health decisions.
+## Bugs encountered
+- Once i had gotten the word from the googlespread sheet and a random word had been chosen, i had trouble iterating through it. i googled for possible solutions and watched several youtube videos but ended up contacting student support for help as couldnot figure it ou myself. I then learned abouts string.punctuation method to remove the square brackets and qoutes that were coming from my googlesheet.
 
-  ![Footer Section](/assets/images/footer.png)
+- Had trouble figuring out why my game was not recognising once the word had been completed and did not display the 'You win' message but my mentor helped my figure it out by showing me how to use the debugger and realised i need to change the is keyword to == as they were the same but just not in the same place stored in memory.
 
-- __The result page__
+### Technologies and Languages, Frameworks & Libraries
 
-- The user will be redirected to the results page and using session storage, it will display the results of the calculations.
+- Python3
 
-![Result Page](/assets/images/resultspage.png)
+- Random is used to display a random choice from the list.
 
-- __The Results explained Area__
+- Gspread (Googlesheets) is used  to link to an online spreadsheet app that lets you create and format spreadsheets that you can use work along side websites and programs.
 
-  - A break down of what each result means and is explained so can action with the results.
+- The Code Institute's GitHub full template for Python is used in order for the program to display properly in the deployed site on Heroku.
 
-  ![Result info Text](/assets/images/resultInfo.png)
+- Git was used for version control by utilizing the Gitpod terminal to commit to Git and Push to GitHub.
 
-## Testing 
+- GitHub is used to store the projects code after being pushed from Git.
 
-- I Have added all Form fields as a requirement as all data is needed to make accurate calculations, I also have added a minimum length and a max length to certain fields to ensure it will validate that the correct data is entered inte right field.
+- Heroku is used to build, run and scale applications in a similar manner across most languages.
 
-- I had commented out the console log's in my code but i reguarly use the to double check the formula's are correct.
+### Deployment
 
-- The Screen is responsive as can be seen here in the AmIREsponsive screen shots on all tested devices.
-
-![AmIResponsive](assets/images/responsiveshot.png)
-
-- In this section, you need to convince the assessor that you have conducted enough testing to legitimately believe that the site works well. Essentially, in this part you will want to go over all of your project’s features and ensure that they all work as intended, with the project providing an easy and straightforward way for the users to achieve their goals.
-
-
-
-### Validator Testing 
-
-- HTML
-    - No errors were returned when passing through the official [W3C validator](https://validator.w3.org/nu/?doc=https%3A%2F%2Fcode-institute-org.github.io%2Flove-maths%2F)
-
-    ![HTML Validation](/assets/images/html-validator-screenshot.png)
-- CSS
-    - No errors were found when passing through the official [(Jigsaw) validator](https://jigsaw.w3.org/css-validator/validator?uri=https%3A%2F%2Fvalidator.w3.org%2Fnu%2F%3Fdoc%3Dhttps%253A%252F%252Fcode-institute-org.github.io%252Flove-maths%252F&profile=css3svg&usermedium=all&warning=1&vextwarning=&lang=en)
-
-![CSS Validation](/assets/images/css-validator-screenshot.png)
-
-- JavaScript
-    - No errors were found when passing through the official [Jshint validator](https://jshint.com/)
-
-![Javascript Validation](/assets/images/jshint-screenshot.png)
-
-- Lighthouse Accessibility testing
-
-![Lighthouse results](/assets/images/lighthouse-screenshot.png)
-
-## Deployment
-
-- Steps used to deploy on Github through Pages section
-
-![Screen shot of the github pages to deploy page](/assets/images/deployone.png)
-![Screen shot of the github once deployed](/assets/images/deploy-two.png)
+- Fork or clone this repository.
+- Go to the Heroku Dashboard.
+- Click New.
+- Select to create a new app.
+- Set the buildbacks to Python and NodeJS in that order.
+- Link the Heroku app to the repository.
+- Click on Deploy.
  
-## Credits 
+### Credits 
+- Watched a few videos on how to implement desired functions on www.youtube.com
+- My Mentor for ideas and help when strugglng with parts of my code.
+- Slack community esp the learn python channel.
+- Student support and tutoring for helping me figure out an issue with bringing my word from googlesheets and iterating through it.
 
 ### Content 
 
-        * The text for the Home page was taken from [Steelfit](https://steelfitusa.com/blogs/health-and-wellness/calculate-tdee)
-        * Text used in read me and result page from [Macro Article](https://www.womenshealthmag.com/uk/food/weight-loss/a706111/counting-calculate-macros/)
-        * Code institute for the sample READ.md for layout
-        * W3 school online and stackoverflow for general ways to implament Navigation bar and style in css
-        * How to implement Session Storage from [YouTube](https://www.youtube.com/watch?v=x0VcigW9kN0&ab_channel=OpenJavaScript)
+- Code institute for the sample READ.md for layout
+- W3 school online and stackoverflow for general ways to implament Navigation bar and style in css
+- How to implement some functions or keywords correctly from [YouTube](https://www.youtube.com/watch?v=x0VcigW9kN0&ab_channel=OpenJavaScript)
 
 
 ### Media
 
-        * photos from [Pexels](https://www.pexels.com/)
-        * font from [Googlefonts](https.//www.googlefonts.com)
-        * favicon from [icons8](https://icons8.com/icons/set/html-favicon)
+ - http://patorjk.com/software/taag/ ascii art for title, win and game over message was created in this site.
