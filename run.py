@@ -1,5 +1,5 @@
 """
-Import the random choice function and gspreadto access our spreadsheet of words
+Import the random choice function and gspread to access our spreadsheet
 """
 import string
 import random
@@ -30,6 +30,12 @@ def intro_to_game():
     Welcome them to the game and get their username.
     let the press a key when they are ready to start playing
     """
+    print("  /\  /\ __ _  _ __    __ _  _ __ ___    __ _  _ __ ")
+    print(" / /_/ // _` || '_ \  / _` || '_ ` _ \  / _` || '_ \ ")
+    print("/ __  /| (_| || | | || (_| || | | | | || (_| || | | |")
+    print("\/ /_/  \__,_||_| |_| \__, ||_| |_| |_| \__,_||_| |_|")
+    print("                      |___/                          ")
+
     username = input("Welcome! Please enter your Name:\n")
     print(f"Hi {username}, You have upto 6 guesses to guess the Secret Word.")
     input("when you are ready to play, Press the Enter key to start")
@@ -40,6 +46,18 @@ def get_word():
     Pick a random word from the list we saved into the data variable
     """
     return random.choice(data)
+
+
+def replay():
+    """
+    once game is finished, ask player if they would like to play again,
+    if so restart play game function, if not then print message
+    """
+    replay_answer = input("would you like to play again? Enter Y/N ").lower()
+    if replay_answer == "y":
+        play_game()
+    else:
+        print("Thanks for playing! Hope to see you again soon!")
 
 
 def play_game():
@@ -64,8 +82,8 @@ def play_game():
 
     while complete is False and lives > 0:
         print("The word contains", len(word), "letters.")
-        print("Already Guessed: ", end=' ')
-        print(*guesses, sep=', ')
+        print("Already Guessed: ", end=" ")
+        print(*guesses, sep=", ")
         print()
         guess = input(f"Lives left:{lives}, Guess a letter or the word: ")
         print()
@@ -107,7 +125,7 @@ def play_game():
                 if letter in guesses:
                     current += letter
                 else:
-                    current += '_ '
+                    current += "_ "
             print(current)
 
         # for i in word:
@@ -134,22 +152,12 @@ def play_game():
             print(f"The word is {word_string.capitalize()}")
             print()
             complete = True
+            replay()
         elif lives == 0:
             print("Oh no! Game over!")
             print(f"The Secret Word was {word_string.capitalize()}")
             print()
-
-
-def replay():
-    """
-    once game is finished, ask player if they would like to play again,
-    if so restart play game function, if not then print message
-    """
-    replay_answer = input("would you like to play again? Enter Y/N ").lower()
-    if replay_answer == "y":
-        play_game()
-    else:
-        print("Thanks for playing! Hope to see you again soon!")
+            replay()
 
 
 def main():
@@ -158,7 +166,6 @@ def main():
     """
     intro_to_game()
     play_game()
-    replay()
 
 
 main()
