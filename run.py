@@ -36,9 +36,9 @@ def intro_to_game():
     print("\/ /_/  \__,_||_| |_| \__, ||_| |_| |_| \__,_||_| |_|")
     print("                      |___/                          ")
 
-    username = input("Welcome! Please enter your Name:\n")
+    username = input("Welcome! Please enter your Name: \n")
     print(f"Hi {username}, You have upto 6 guesses to guess the Secret Word.")
-    input("when you are ready to play, Press the Enter key to start")
+    input("When you are ready to play, Press the Enter key to start")
 
 
 def get_word():
@@ -53,7 +53,7 @@ def replay():
     once game is finished, ask player if they would like to play again,
     if so restart play game function, if not then print message
     """
-    replay_answer = input("would you like to play again? Enter Y/N ").lower()
+    replay_answer = input("would you like to play again? Enter Y/N \n").lower()
     if replay_answer == "y":
         play_game()
     else:
@@ -85,7 +85,7 @@ def play_game():
         print("Already Guessed: ", end=" ")
         print(*guesses, sep=", ")
         print()
-        guess = input(f"Lives left:{lives}, Guess a letter or the word: ")
+        guess = input(f"Lives left:{lives}, Guess a letter or the word: \n")
         print()
 
         if guess.isalpha():
@@ -117,7 +117,6 @@ def play_game():
 
         else:
             print("ValueError: Please enter a letter or guess the word.")
-            lives -= 1
 
         current = ""
         if complete is False:
