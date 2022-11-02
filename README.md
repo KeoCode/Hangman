@@ -97,4 +97,4 @@ Checked that symbols, numbers or empty spaces will come up as invalid guesses wh
 
 ### Media
 
- - http://patorjk.com/software/taag/ ascii art for title, win and game over message was created in this site.
+ - http://patorjk.com/software/taag/ ascii art for title was created on this site.

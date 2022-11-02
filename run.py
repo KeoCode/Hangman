@@ -73,13 +73,15 @@ def play_game():
         word_string = word_string.replace(letter, "")
 
     word = list(word_string)
-    # print(word)
 
+    # sets up variables to start the game
     lives = 6
     guesses = []
     complete = False
     print(len(word) * "_ ")
 
+    # While the Secret word has not been completed and the user still has lives
+    # It displays the guesses already made and how many lives the user has left
     while complete is False and lives > 0:
         print("The word contains", len(word), "letters.")
         print("Already Guessed: ", end=" ")
@@ -87,6 +89,10 @@ def play_game():
         print()
         guess = input(f"Lives left:{lives}, Guess a letter or the word: \n")
         print()
+
+        # If the input is in the alphabet and is only one letter or the length
+        # of the word then check if it is in the word or is the word
+        # Print error if not in the alphabet or is not avalid value input by the user.
 
         if guess.isalpha():
             if len(guess) == 1:
@@ -118,6 +124,7 @@ def play_game():
         else:
             print("ValueError: Please enter a letter or guess the word.")
 
+        # if the letters are in the word print it in its place and add to guesses displayed
         current = ""
         if complete is False:
             for letter in word:
@@ -127,25 +134,8 @@ def play_game():
                     current += "_ "
             print(current)
 
-        # for i in word:
-        #     if i.lower() in guesses:
-        #         print(i, end="")
-        #     else:
-        #         print("_", end="")
-        # print("")
-
-        #     guesses.append(guess.lower())
-        #     if guess.lower() not in word:
-        #         lives -= 1
-        #         print(f" Guessed already: {guesses}")
-        #         if lives == 0:
-        #             break
-
-        # complete = True
-        # for i in word:
-        #     if i.lower() not in guesses:
-        #         complete = False
-        # pdb.set_trace()
+        # if word is completed correctly then display 'you win'
+        # if they run out of lives display 'game over'
         if current == word_string:
             print("Congradulations! You got it right!")
             print(f"The word is {word_string.capitalize()}")
