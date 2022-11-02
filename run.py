@@ -30,10 +30,10 @@ def intro_to_game():
     Welcome them to the game and get their username.
     let the press a key when they are ready to start playing
     """
-    print("  /\  /\ __ _  _ __    __ _  _ __ ___    __ _  _ __ ")
-    print(" / /_/ // _` || '_ \  / _` || '_ ` _ \  / _` || '_ \ ")
+    print("  /\\  /\\ __ _  _ __    __ _  _ __ ___    __ _  _ __ ")
+    print(" / /_/ // _` || '_ \\  / _` || '_ ` _ \\  / _` || '_ \\ ")
     print("/ __  /| (_| || | | || (_| || | | | | || (_| || | | |")
-    print("\/ /_/  \__,_||_| |_| \__, ||_| |_| |_| \__,_||_| |_|")
+    print("\\/ /_/  \\__,_||_| |_| \\__, ||_| |_| |_| \\__,_||_| |_|")
     print("                      |___/                          ")
 
     username = input("Welcome! Please enter your Name: \n")
@@ -92,7 +92,7 @@ def play_game():
 
         # If the input is in the alphabet and is only one letter or the length
         # of the word then check if it is in the word or is the word
-        # Print error if not in the alphabet or is not avalid value input by the user.
+        # Print error if not in the alphabet or is not avalid value input.
 
         if guess.isalpha():
             if len(guess) == 1:
@@ -124,7 +124,7 @@ def play_game():
         else:
             print("ValueError: Please enter a letter or guess the word.")
 
-        # if the letters are in the word print it in its place and add to guesses displayed
+        # if the letters is in word print it in its place and add to guesses
         current = ""
         if complete is False:
             for letter in word:
