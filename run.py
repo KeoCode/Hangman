@@ -21,8 +21,9 @@ GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open("hangman_words")
 
 wordlist = SHEET.worksheet("wordsheet")
-
+scoreboard = SHEET.worksheet("scores")
 data = wordlist.get_all_values()
+score = 0
 
 
 def intro_to_game():
@@ -39,6 +40,7 @@ def intro_to_game():
     username = input("Welcome! Please enter your Name: \n")
     print(f"Hi {username}, You have upto 6 guesses to guess the Secret Word.")
     input("When you are ready to play, Press the Enter key to start")
+    return username
 
 
 def get_word():
@@ -68,6 +70,7 @@ def play_game():
     win or lose
     """
     word_string = str(get_word())
+    global score
 
     for letter in string.punctuation:
         word_string = word_string.replace(letter, "")
@@ -138,23 +141,51 @@ def play_game():
         # if they run out of lives display 'game over'
         if current == word_string:
             print("Congradulations! You got it right!")
+            print("                  __    __ _       ")
+            print("/\\_/\\___  _   _  / / /\\ \\ (_)_ __  ")
+            print("\\_ _/ _ \\| | | | \\ \\/  \\/ / | '_ \\ ")
+            print(" / \\ (_) | |_| |  \\  /\\  /| | | | |")
+            print(" \\_/\\___/ \\__,_|   \\/  \\/ |_|_| |_|")
+            print()
             print(f"The word is {word_string.capitalize()}")
             print()
             complete = True
+            score += 10
+            print(score)
             replay()
+            return score
         elif lives == 0:
             print("Oh no! Game over!")
+            print("   ___                         ___                 ")
+            print("  / _ \\__ _ _ __ ___   ___    /___\\__   _____ _ __ ")
+            print(" / /_\\/ _` | '_ ` _ \\ / _ \\  //  //\\ \\ / / _ \\ '__|")
+            print("/ /_\\\\ (_| | | | | | |  __/ / \\_//  \\ V /  __/ |   ")
+            print("\\____/\\__,_|_| |_| |_|\\___| \\___/    \\_/ \\___|_|   ")
+            print()
             print(f"The Secret Word was {word_string.capitalize()}")
             print()
+            score -= 10
+            print(score)
             replay()
+            return score
+
+
+def update_scores(username, final_score):
+    """
+    Add 10 points when complete the game and lose 10 points if lose the game.
+    Update the score to scoreboard
+    """
+    scoreboard.append_row([username, final_score])
 
 
 def main():
     """
     All the main function of game play in order
     """
-    intro_to_game()
-    play_game()
+    username = intro_to_game()
+    final_score = play_game()
+    update_scores(username, final_score)
 
 
-main()
+if __name__ == "__main__":
+    main()
