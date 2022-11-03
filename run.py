@@ -151,7 +151,6 @@ def play_game():
             print()
             complete = True
             score += 10
-            print(score)
             replay()
             return score
         elif lives == 0:
@@ -165,7 +164,6 @@ def play_game():
             print(f"The Secret Word was {word_string.capitalize()}")
             print()
             score -= 10
-            print(score)
             replay()
             return score
 
@@ -176,6 +174,7 @@ def update_scores(username, final_score):
     Update the score to scoreboard
     """
     scoreboard.append_row([username, final_score])
+    print(final_score)
 
 
 def main():
