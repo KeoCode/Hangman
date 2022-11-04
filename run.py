@@ -37,10 +37,24 @@ def intro_to_game():
     print("\\/ /_/  \\__,_||_| |_| \\__, ||_| |_| |_| \\__,_||_| |_|")
     print("                      |___/                          ")
 
-    username = input("Welcome! Please enter your Name: \n")
+    username = " "
+    while True:
+        username = input("Welcome! Please enter your Name: \n")
+
+        if username.isalnum() is not True:
+            print("Error: Letters and numbers only.")
+            continue
+        else:
+            print(f"Hi {username}, You have upto 6 guesses to guess the Word.")
+            input("When you are ready to play, Press the Enter key to start")
+            return username
+
     print(f"Hi {username}, You have upto 6 guesses to guess the Secret Word.")
     input("When you are ready to play, Press the Enter key to start")
     return username
+
+
+print("Error: Letters and numbers only.")
 
 
 def get_word():
@@ -174,7 +188,7 @@ def update_scores(username, final_score):
     Update the score to scoreboard
     """
     scoreboard.append_row([username, final_score])
-    print(final_score)
+    print(f"Current Score: {final_score}")
 
 
 def main():
